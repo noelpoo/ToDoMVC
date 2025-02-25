@@ -12,7 +12,9 @@ const testData = [
 const addToDoItem = (item) => {
     ToDoInput.inputInTextInput(item.title);
     ToDoInput.pressEnter();
-    ToDoList.toDoItemLabelExists(item.title);
+    ToDoList.elements
+        .toDoItemLabel()
+        .should('contain', item.title);
 }
 
 Given('user is navigated to to-do application', () => {
@@ -61,13 +63,20 @@ When('user filters {string} to-do items', status => {
 })
 
 Then('there should only be {string} to-do items in the list', count => {
-    ToDoList.assertNumberOfItemsInList(parseInt(count));
+    ToDoList.getNumberOfItemInList().then(itemCount => {
+        assert.equal(itemCount, parseInt(count));
+    })
 })
 
 Then('the to-do item is marked as completed', () => {
-    ToDoList.validateFirstToDoItemIsComplete();
+    ToDoList.elements
+        .toDoItem()
+        .first()
+        .should('have.class', 'completed');
 })
 
 Then('the new to-do item is added to the list', () => {
-    ToDoList.toDoItemLabelExists(testData[0].title);
+    ToDoList.elements
+        .toDoItemLabel()
+        .should('contain', testData[0].title);
 })

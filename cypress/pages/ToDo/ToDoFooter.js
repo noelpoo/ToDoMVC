@@ -4,15 +4,24 @@ class ToDoFooter {
     }
 
     clickAll() {
-        this.elements.footer().contains('All').click();
+        this.elements
+            .footer()
+            .contains('All')
+            .click();
     }
 
     clickActive() {
-        this.elements.footer().contains('Active').click();
+        this.elements
+            .footer()
+            .contains('Active')
+            .click();
     }
 
     clickCompleted() {
-        this.elements.footer().contains('Completed').click();
+        this.elements
+            .footer()
+            .contains('Completed')
+            .click();
     }
 
     clickClearCompleted() {
