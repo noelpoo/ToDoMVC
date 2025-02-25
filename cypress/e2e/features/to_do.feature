@@ -3,9 +3,13 @@ Feature: To-do list
     Background:
         Given user is navigated to to-do application
 
-    Scenario: User adds a new to-do item
-        When user adds a new to-do item
+    Scenario: User adds a new to-do item with a valid input
+        When user adds a new "valid" to-do item
         Then the new to-do item is added to the list
+
+    Scenario: User adds a new to-do item with an invalid input
+        When user adds a new "invalid" to-do item
+        Then there should be no item added to the to-do list
     
     Scenario: User checks off a to-do item
         Given there is a to-do item created
