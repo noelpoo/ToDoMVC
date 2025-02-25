@@ -62,6 +62,10 @@ When('user filters {string} to-do items', status => {
     }
 })
 
+When('user toggles all to-do items', () => {
+    ToDoInput.clickToggleAllButton();
+})
+
 Then('there should only be {string} to-do items in the list', count => {
     ToDoList.getNumberOfItemInList().then(itemCount => {
         assert.equal(itemCount, parseInt(count));
@@ -73,6 +77,14 @@ Then('the to-do item is marked as completed', () => {
         .toDoItem()
         .first()
         .should('have.class', 'completed');
+})
+
+Then('all 3 to-do items are marked as completed', () => {
+    ToDoList.elements
+        .toDoItem()
+        .each($el => {
+            cy.wrap($el).should('have.class', 'completed');
+        });
 })
 
 Then('the new to-do item is added to the list', () => {

@@ -12,6 +12,11 @@ Feature: To-do list
         When user checks off the to-do item
         Then the to-do item is marked as completed
 
+    Scenario: User checks off all to-do items using toggle-all
+        Given there are 3 to-do items created
+        When user toggles all to-do items
+        Then all 3 to-do items are marked as completed
+
     Scenario: User deletes a to-do item
         Given there are 3 to-do items created
         When user deletes a to-do item

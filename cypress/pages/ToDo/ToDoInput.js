@@ -1,6 +1,12 @@
 class ToDoInput {
     elements = {
         textInput: () => cy.get('[data-testid="text-input"]'),
+        toggleAllButton: () => cy.get('[data-testid="toggle-all"]'),
+    }
+
+    clickToggleAllButton() {
+        this.elements.toggleAllButton()
+            .click({ force: true });
     }
 
     inputInTextInput(text) {
